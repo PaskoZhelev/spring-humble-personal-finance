@@ -3,6 +3,9 @@ package com.pmz.humble.model;
 import java.sql.Date;
 import java.util.List;
 
+import com.pmz.humble.factories.CurrencyFactory;
+import com.pmz.humble.interfaces.Currency;
+
 public class User {
 	
 	private Long id;
@@ -11,9 +14,48 @@ public class User {
 	private String email;
 	private Date registrationDate;
 	private List<Transaction> transactions;
-	private Balance balance;
+	private double ammount;
+	private Currency currency;
+
+	public User(String username, String password, String email, Date registrationDate, 
+			double ammount, int currencyId) {
+		this.username = username;
+		this.password = password;
+		this.email = email;
+		this.registrationDate = registrationDate;
+		this.ammount = ammount;
+		this.currency = CurrencyFactory.getCurrency(currencyId);
+	}
 	
+	public User(String username, String password, String email, Date registrationDate,
+			List<Transaction> transactions, double ammount, Currency currency) {
+		this.username = username;
+		this.password = password;
+		this.email = email;
+		this.registrationDate = registrationDate;
+		this.transactions = transactions;
+		this.ammount = ammount;
+		this.currency = currency;
+	}
 	
+	public User(Long id, String username, String password, String email, Date registrationDate,
+			List<Transaction> transactions, double ammount, Currency currency) {
+		this.id = id;
+		this.username = username;
+		this.password = password;
+		this.email = email;
+		this.registrationDate = registrationDate;
+		this.transactions = transactions;
+		this.ammount = ammount;
+		this.currency = currency;
+	}
+	
+	public Currency getCurrency() {
+		return currency;
+	}
+	public void setCurrency(Currency currency) {
+		this.currency = currency;
+	}
 	public Long getId() {
 		return id;
 	}
@@ -50,12 +92,15 @@ public class User {
 	public void setTransactions(List<Transaction> transactions) {
 		this.transactions = transactions;
 	}
-	public Balance getBalance() {
-		return balance;
+
+	public double getAmmount() {
+		return ammount;
 	}
-	public void setBalance(Balance balance) {
-		this.balance = balance;
+
+	public void setAmmount(double ammount) {
+		this.ammount = ammount;
 	}
+
 	
 	
 }

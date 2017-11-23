@@ -3,7 +3,6 @@ package com.pmz.humble.dao;
 import javax.sql.DataSource;
 
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
 import com.pmz.humble.interfaces.DAOHelper;
 

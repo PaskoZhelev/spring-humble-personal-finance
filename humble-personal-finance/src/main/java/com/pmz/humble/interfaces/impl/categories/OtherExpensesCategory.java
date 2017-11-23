@@ -1,9 +1,9 @@
-package com.pmz.humble.interfaces.impl;
+package com.pmz.humble.interfaces.impl.categories;
 
 import com.pmz.humble.constants.HumbleConstants;
 import com.pmz.humble.interfaces.Category;
 
-public class RestaurantCategory implements Category {
+public class OtherExpensesCategory implements Category {
 
 	@Override
 	public boolean isIncome() {
@@ -12,7 +12,7 @@ public class RestaurantCategory implements Category {
 
 	@Override
 	public String getName() {
-		return HumbleConstants.RESTAURANT_CATEGORY_NAME;
+		return HumbleConstants.OTHER_CATEGORY_NAME;
 	}
 
 }

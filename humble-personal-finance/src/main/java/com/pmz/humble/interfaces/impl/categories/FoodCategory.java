@@ -1,4 +1,4 @@
-package com.pmz.humble.interfaces.impl;
+package com.pmz.humble.interfaces.impl.categories;
 
 import com.pmz.humble.constants.HumbleConstants;
 import com.pmz.humble.interfaces.Category;
