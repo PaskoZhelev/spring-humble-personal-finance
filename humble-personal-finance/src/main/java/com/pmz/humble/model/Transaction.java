@@ -1,5 +1,7 @@
 package com.pmz.humble.model;
 
+import java.sql.Date;
+
 import com.pmz.humble.interfaces.Category;
 
 public class Transaction {
@@ -7,6 +9,8 @@ public class Transaction {
 	private Long userId;
 	private Category category;
 	private boolean isIncome;
+	private double sum;
+	private Date date;
 	
 	public Transaction() {
 		
