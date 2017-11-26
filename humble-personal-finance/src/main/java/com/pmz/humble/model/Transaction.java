@@ -2,6 +2,7 @@ package com.pmz.humble.model;
 
 import java.sql.Date;
 
+import com.pmz.humble.factories.CategoryFactory;
 import com.pmz.humble.interfaces.Category;
 
 public class Transaction {
@@ -12,19 +13,28 @@ public class Transaction {
 	private double sum;
 	private Date date;
 	
-	public Transaction() {
-		
-	}
 
-	public Transaction(Long userId, Category category) {
-		this.userId = userId;
-		setCategory(category);
-	}
-	
-	public Transaction(Long userId, Category category, boolean isIncome) {
+
+	public Transaction(Long userId, Category category, boolean isIncome, double sum, Date date) {
 		this.userId = userId;
 		this.category = category;
 		this.isIncome = isIncome;
+		this.sum = sum;
+		this.date = date;
+	}
+	
+	public Transaction(Category category, boolean isIncome, double sum, Date date) {
+		this.category = category;
+		this.isIncome = isIncome;
+		this.sum = sum;
+		this.date = date;
+	}
+	
+	public Transaction(int categoryId, boolean isIncome, double sum, Date date) {
+		this.category = CategoryFactory.getCategory(categoryId);
+		this.isIncome = isIncome;
+		this.sum = sum;
+		this.date = date;
 	}
 
 	public Long getUserId() {
