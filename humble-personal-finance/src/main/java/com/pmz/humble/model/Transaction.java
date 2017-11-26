@@ -64,6 +64,21 @@ public class Transaction {
 	public void setIncome(boolean isIncome) {
 		this.isIncome = isIncome;
 	}
-	
-	
+
+	public double getSum() {
+		return sum;
+	}
+
+	public void setSum(double sum) {
+		this.sum = sum;
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
 }

@@ -5,6 +5,13 @@ import com.pmz.humble.interfaces.Category;
 
 public class RestaurantCategory implements Category {
 
+	public static final int CATEGORY_ID = 6;
+	
+	@Override
+	public int getId() {
+		return CATEGORY_ID;
+	}
+	
 	@Override
 	public boolean isIncome() {
 		return false;

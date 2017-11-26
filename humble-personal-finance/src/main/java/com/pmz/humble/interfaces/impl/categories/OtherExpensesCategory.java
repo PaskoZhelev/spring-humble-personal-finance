@@ -5,6 +5,13 @@ import com.pmz.humble.interfaces.Category;
 
 public class OtherExpensesCategory implements Category {
 
+	public static final int CATEGORY_ID = 4;
+	
+	@Override
+	public int getId() {
+		return CATEGORY_ID;
+	}
+	
 	@Override
 	public boolean isIncome() {
 		return false;

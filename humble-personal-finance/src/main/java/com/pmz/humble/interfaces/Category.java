@@ -12,4 +12,9 @@ public interface Category {
 	 * @return if the category is income or not(expense)
 	 */
 	public boolean isIncome();
+	
+	/**
+	 * @return category id
+	 */
+	public int getId();
 }

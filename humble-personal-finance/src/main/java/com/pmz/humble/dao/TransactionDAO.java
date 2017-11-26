@@ -2,6 +2,8 @@ package com.pmz.humble.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.jdbc.core.RowMapper;
@@ -40,6 +42,12 @@ public class TransactionDAO extends AbstractDAO {
 		return transactions;
 	}
 	
+	public List<Transaction> getAllTransactionsOfUserForYesterday(int userId){
+		String sql = QueryUtils.getAllTransactionsOfUserForYesterday(TRANSACTION_COLUMNS);
+		List<Transaction> transactions = query(sql, transactionRowMapper);
+		return transactions;
+	}
+	
 	public List<Transaction> getAllTransactionsOfUserForLastWeek(int userId){
 		String sql = QueryUtils.getAllTransactionsOfUserForLastWeek(TRANSACTION_COLUMNS);
 		List<Transaction> transactions = query(sql, transactionRowMapper);
@@ -50,5 +58,12 @@ public class TransactionDAO extends AbstractDAO {
 		String sql = QueryUtils.getAllTransactionsOfUserForLastMonth(TRANSACTION_COLUMNS);
 		List<Transaction> transactions = query(sql, transactionRowMapper);
 		return transactions;
+	}
+	
+	public void createTransaction(Transaction transaction) {
+		String sql = QueryUtils.getInsertStatement("transactions", TRANSACTION_COLUMNS);
+        Date today = new Date();       
+        update(sql, transaction.getUserId(), transaction.getCategory().getId(), transaction.isIncome(), 
+        		transaction.getSum(), new Timestamp(today.getTime()));
 	}
 }

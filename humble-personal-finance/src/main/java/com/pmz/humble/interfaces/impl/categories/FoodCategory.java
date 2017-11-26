@@ -5,6 +5,13 @@ import com.pmz.humble.interfaces.Category;
 
 public class FoodCategory implements Category {
 
+	public static final int CATEGORY_ID = 1;
+	
+	@Override
+	public int getId() {
+		return CATEGORY_ID;
+	}
+	
 	@Override
 	public boolean isIncome() {
 		return false;
@@ -14,5 +21,6 @@ public class FoodCategory implements Category {
 	public String getName() {
 		return HumbleConstants.FOOD_CATEGORY_NAME;
 	}
+	
 
 }
