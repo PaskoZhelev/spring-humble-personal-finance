@@ -14,7 +14,7 @@ public class User {
 	private String email;
 	private Date registrationDate;
 	private List<Transaction> transactions;
-	private double ammount;
+	private double balance;
 	private Currency currency;
 
 	public User(String username, String password, String email, Date registrationDate, 
@@ -23,7 +23,7 @@ public class User {
 		this.password = password;
 		this.email = email;
 		this.registrationDate = registrationDate;
-		this.ammount = ammount;
+		this.balance = ammount;
 		this.currency = CurrencyFactory.getCurrency(currencyId);
 	}
 	
@@ -34,7 +34,7 @@ public class User {
 		this.email = email;
 		this.registrationDate = registrationDate;
 		this.transactions = transactions;
-		this.ammount = ammount;
+		this.balance = ammount;
 		this.currency = currency;
 	}
 	
@@ -46,7 +46,7 @@ public class User {
 		this.email = email;
 		this.registrationDate = registrationDate;
 		this.transactions = transactions;
-		this.ammount = ammount;
+		this.balance = ammount;
 		this.currency = currency;
 	}
 	
@@ -93,12 +93,12 @@ public class User {
 		this.transactions = transactions;
 	}
 
-	public double getAmmount() {
-		return ammount;
+	public double getBalance() {
+		return balance;
 	}
 
-	public void setAmmount(double ammount) {
-		this.ammount = ammount;
+	public void setBalance(double ammount) {
+		this.balance = ammount;
 	}
 
 	

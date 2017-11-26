@@ -1,6 +1,7 @@
 package com.pmz.humble.dao;
 
 import static org.junit.Assert.assertNotNull;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import javax.sql.DataSource;
@@ -38,7 +39,7 @@ public class UserDAOTest {
 
 	@Before
 	public void setUp() throws Exception {
-		MockitoAnnotations.initMocks(this);
+		MockitoAnnotations.initMocks(this);		
 	}
 
 
@@ -46,8 +47,10 @@ public class UserDAOTest {
 	public void testGetUserByName() {
 		when(daoHelper.getJdbcTemplate()).thenReturn(jdbcTemplate);
 		when(daoHelper.getDataSource()).thenReturn(dataSource);
-		User user = classUnderTest.getUserByName("pasko");
+		User newUser = new User("test2", "test", "test@example", new java.sql.Date(System.currentTimeMillis()), 100.00, 1);
+		classUnderTest.createUser(newUser);
 		
+		User user = classUnderTest.getUserByName("test");	
 		assertNotNull("It is null", user);
 	}
 

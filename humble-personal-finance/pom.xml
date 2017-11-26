@@ -52,6 +52,11 @@
 			<artifactId>commons-codec</artifactId>
 		</dependency>
 
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+		</dependency>
+
 		<!-- add dependencies for ViewResolver -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

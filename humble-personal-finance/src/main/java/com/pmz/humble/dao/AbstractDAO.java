@@ -19,6 +19,8 @@ public class AbstractDAO {
 	
 	@Autowired
 	private DAOHelper daoHelper;
+	
+	
 		
 	/**
      * Returns a JDBC template for performing database operations.
@@ -36,6 +38,8 @@ public class AbstractDAO {
             LOG.debug("{} ms:  {}",millis,sql);
         }
     }
+    
+    
 	
 	protected int update(String sql, Object... args) {
         long time = System.nanoTime();
@@ -87,4 +91,14 @@ public class AbstractDAO {
         log(sql, t);
         return result;
     }
+
+	public DAOHelper getDaoHelper() {
+		return daoHelper;
+	}
+
+	public void setDaoHelper(DAOHelper daoHelper) {
+		this.daoHelper = daoHelper;
+	}
+    
+    
 }
