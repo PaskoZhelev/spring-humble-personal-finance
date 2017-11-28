@@ -14,6 +14,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.test.context.ContextConfiguration;
 
 import com.pmz.humble.interfaces.DAOHelper;
 import com.pmz.humble.model.User;
@@ -23,6 +24,7 @@ import com.pmz.humble.model.User;
  *
  */
 @RunWith(MockitoJUnitRunner.class)
+@ContextConfiguration
 public class UserDAOTest {
 
 	@InjectMocks
@@ -39,7 +41,8 @@ public class UserDAOTest {
 
 	@Before
 	public void setUp() throws Exception {
-		MockitoAnnotations.initMocks(this);		
+		MockitoAnnotations.initMocks(this);	
+		jdbcTemplate = new JdbcTemplate();
 	}
 
 

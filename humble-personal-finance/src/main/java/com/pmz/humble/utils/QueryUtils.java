@@ -51,15 +51,20 @@ public final class QueryUtils {
 	}
 	
 	public static String getAllTransactionsOfUserForYesterday(String cols) {
-		return "SELECT " + cols + " FROM transactions WHERE date = CURDATE() - INTERVAL 1 DAY";
+		return "SELECT " + cols + " FROM transactions WHERE date = CURDATE() - INTERVAL 1 DAY AND user_id=?";
 	}
 	
 	public static String getAllTransactionsOfUserForLastWeek(String cols) {
-		return "SELECT " + cols + " FROM transactions WHERE date BETWEEN date_sub(NOW(),INTERVAL 1 WEEK) AND NOW()";
+		return "SELECT " + cols + " FROM transactions WHERE date BETWEEN date_sub(NOW(),INTERVAL 1 WEEK) AND NOW() AND user_id=?";
 	}
 	
 	public static String getAllTransactionsOfUserForLastMonth(String cols) {
-		return "SELECT " + cols + " FROM transactions WHERE date BETWEEN date_sub(NOW(),INTERVAL 1 MONTH) AND NOW()";
+		return "SELECT " + cols + " FROM transactions WHERE date BETWEEN date_sub(NOW(),INTERVAL 1 MONTH) AND NOW() AND user_id=?";
 	}
-
+	
+	public static String getUpdateTransactionStatement() {
+		return "UPDATE transactions SET user_id=?, category_id=?, is_income=?, sum=?, date=? " +
+                "WHERE id=?";
+	}
+	
 }

@@ -8,7 +8,7 @@ import com.pmz.humble.interfaces.Currency;
 
 public class User {
 	
-	private Long id;
+	private int id;
 	private String username;
 	private String password;
 	private String email;
@@ -38,16 +38,15 @@ public class User {
 		this.currency = currency;
 	}
 	
-	public User(Long id, String username, String password, String email, Date registrationDate,
-			List<Transaction> transactions, double ammount, Currency currency) {
+	public User(int id, String username, String password, String email, Date registrationDate,
+			 double ammount, int currencyId) {
 		this.id = id;
 		this.username = username;
 		this.password = password;
 		this.email = email;
 		this.registrationDate = registrationDate;
-		this.transactions = transactions;
 		this.balance = ammount;
-		this.currency = currency;
+		this.currency = CurrencyFactory.getCurrency(currencyId);
 	}
 	
 	public Currency getCurrency() {
@@ -56,10 +55,10 @@ public class User {
 	public void setCurrency(Currency currency) {
 		this.currency = currency;
 	}
-	public Long getId() {
+	public int getId() {
 		return id;
 	}
-	public void setId(Long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	public String getUsername() {
@@ -101,6 +100,11 @@ public class User {
 		this.balance = ammount;
 	}
 
-	
-	
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", username=" + username + ", password=" + password + ", email=" + email
+				+ ", registrationDate=" + registrationDate + ", transactions=" + transactions + ", balance=" + balance
+				+ ", currency=" + currency + "]";
+	}
+
 }

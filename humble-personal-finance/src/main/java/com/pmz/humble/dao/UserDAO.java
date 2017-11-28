@@ -30,12 +30,13 @@ public class UserDAO extends AbstractDAO {
 	
 	private class UserRowMapper implements RowMapper<User> {
         public User mapRow(ResultSet rs, int rowNum) throws SQLException {
-            return new User(rs.getString(1),
+            return new User(rs.getInt(1),
                     decrypt(rs.getString(2)),
                     rs.getString(3),
-                    rs.getDate(4),
-                    rs.getDouble(5),
-                    rs.getInt(6));
+                    rs.getString(4),
+                    rs.getDate(5),
+                    rs.getDouble(6),
+                    rs.getInt(7));
         }
     }
 	
@@ -117,15 +118,6 @@ public class UserDAO extends AbstractDAO {
     }
     
     /**
-     * Deletes the user with the given username.
-     *
-     * @param username The username.
-     */
-    public void deleteUser(String username) {       
-        update("delete from users where username=?", username);   
-    }
-    
-    /**
      * Updates the given user.
      *
      * @param user The user to update.
@@ -136,5 +128,13 @@ public class UserDAO extends AbstractDAO {
                 user.getCurrency().getId(), user.getUsername());
     }
     
-    
+    /**
+     * Deletes the user with the given username.
+     *
+     * @param username The username.
+     */
+    public void deleteUser(String username) {       
+        update("delete from users where username=?", username);   
+    }
+
 }
