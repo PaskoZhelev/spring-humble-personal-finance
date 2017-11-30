@@ -5,11 +5,15 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.PropertySources;
 
 @SpringBootApplication
 @Configuration
 @ComponentScan("com.pmz.humble")
-@PropertySource("classpath:humbleCommon.properties")
+@PropertySources({
+    @PropertySource("classpath:humbleCommon.properties")
+
+})
 public class HumblePersonalFinanceApplication {
 
 	public static void main(String[] args) {

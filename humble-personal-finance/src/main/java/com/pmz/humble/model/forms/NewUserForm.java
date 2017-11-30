@@ -24,7 +24,7 @@ public class NewUserForm {
 	@Email
 	private String email;
 	
-	@Min(value=0)
+	@Min(value=0, message="Invalid amount")
 	private double ammount;
 	
 	private int currency;	

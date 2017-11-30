@@ -1,5 +1,7 @@
 package com.pmz.humble.controller;
 
+import javax.validation.Valid;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +38,7 @@ public class RegisterController {
 	}
 	
 	@PostMapping("/register")
-	public String submitRegisterForm(@ModelAttribute("newUserForm") NewUserForm newUserForm,
+	public String submitRegisterForm(@ModelAttribute("newUserForm") @Valid NewUserForm newUserForm,
 			BindingResult bindingResult, Model model) {
 		if (bindingResult.hasErrors()) {
             return "register";
@@ -46,6 +48,6 @@ public class RegisterController {
 			model.addAttribute("usernameExists", usernameTaken);
 			return "register";
 		}
-		return "redirect:/main";
+		return "main";
 	}
 }
