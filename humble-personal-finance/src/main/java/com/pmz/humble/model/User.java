@@ -1,6 +1,7 @@
 package com.pmz.humble.model;
 
-import java.sql.Date;
+
+import java.util.Date;
 import java.util.List;
 
 import com.pmz.humble.factories.CurrencyFactory;
@@ -36,6 +37,14 @@ public class User {
 		this.transactions = transactions;
 		this.balance = ammount;
 		this.currency = currency;
+	}
+	
+	public User(String username, String password, String email, double ammount, int currencyId) {
+		this.username = username;
+		this.password = password;
+		this.email = email;
+		this.balance = ammount;
+		this.currency = CurrencyFactory.getCurrency(currencyId);
 	}
 	
 	public User(int id, String username, String password, String email, Date registrationDate,

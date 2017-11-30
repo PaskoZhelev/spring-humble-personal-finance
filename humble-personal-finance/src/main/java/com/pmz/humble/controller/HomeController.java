@@ -20,7 +20,7 @@ import com.pmz.humble.model.User;
 @Controller
 public class HomeController {
 	
-	private static final Logger LOG = LoggerFactory.getLogger(AbstractDAO.class);
+	private static final Logger LOG = LoggerFactory.getLogger(HomeController.class);
 	
 	@Autowired
 	private TransactionDAO transactionDAO;

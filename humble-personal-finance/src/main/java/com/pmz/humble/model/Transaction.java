@@ -1,6 +1,8 @@
 package com.pmz.humble.model;
 
-import java.sql.Date;
+
+
+import java.util.Date;
 
 import com.pmz.humble.factories.CategoryFactory;
 import com.pmz.humble.interfaces.Category;
