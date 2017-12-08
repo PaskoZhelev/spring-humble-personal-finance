@@ -34,20 +34,29 @@ public class RegisterController {
 	@GetMapping("/register")
 	public String registerForm(Model model) {
 		model.addAttribute("newUserForm", new NewUserForm());
-		return "register";
+		return getRegisterView();
 	}
 	
 	@PostMapping("/register")
 	public String submitRegisterForm(@ModelAttribute("newUserForm") @Valid NewUserForm newUserForm,
 			BindingResult bindingResult, Model model) {
+
 		if (bindingResult.hasErrors()) {
-            return "register";
+            return getRegisterView();
         }
 		
 		if(registrationService.registerUser(newUserForm) == null) {
 			model.addAttribute("usernameExists", usernameTaken);
-			return "register";
+			return getRegisterView();
 		}
-		return "main";
+		return getHomeView();
+	}
+	
+	private String getRegisterView() {
+		return "register";
+	}
+	
+	private String getHomeView() {
+		return "home";	
 	}
 }

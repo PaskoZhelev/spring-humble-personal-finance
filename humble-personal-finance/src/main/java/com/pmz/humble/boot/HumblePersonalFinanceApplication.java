@@ -12,7 +12,6 @@ import org.springframework.context.annotation.PropertySources;
 @ComponentScan("com.pmz.humble")
 @PropertySources({
     @PropertySource("classpath:humbleCommon.properties")
-
 })
 public class HumblePersonalFinanceApplication {
 

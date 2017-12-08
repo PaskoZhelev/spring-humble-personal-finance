@@ -11,20 +11,20 @@ import javax.validation.constraints.Size;
  */
 public class NewUserForm {
 	
-	@NotNull
-	@Size(min=3, max=20)
+	@NotNull(message="Username field cannot be empty")
+	@Size(min=3, max=20,message="Username must be between {min} and {max} symbols")
 	private String username;
 	
-	@NotNull
-	@Size(min=6)
+	@NotNull(message="Password field cannot be empty")
+	@Size(min=6, max=100,message="Password must be between {min} and {max} symbols")
 	private String password;
 	
-	@NotNull
-	@Size(min=6)
+	@NotNull(message="Email field cannot be empty")
+	@Size(min=6, max=30,message="Email must be between {min} and {max} symbols")
 	@Email
 	private String email;
 	
-	@Min(value=0, message="Invalid amount")
+	@Min(value=0, message="Invalid Amount")
 	private double ammount;
 	
 	private int currency;	

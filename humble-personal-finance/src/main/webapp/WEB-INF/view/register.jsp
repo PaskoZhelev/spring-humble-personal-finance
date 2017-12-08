@@ -26,35 +26,49 @@
 		<form:form class="form-type-material" method="POST" action="register" modelAttribute="newUserForm">
             <div class="form-group">             
 			  <form:label path="username">Username</form:label>
-			  <form:input class="form-control" path="username" cssErrorClass="form-control is-invalid"/>
+			  <form:input class="form-control" path="username" cssErrorClass="form-control is-invalid"  required="required"/>
 			  <form:errors cssClass="invalid-feedback" path="username"  />
             </div>
 
             <div class="form-group">             
 			  <form:label path="password">Password</form:label>
-			  <form:password class="form-control" path="password" cssErrorClass="form-control is-invalid"/>
+			  <form:password class="form-control" path="password" cssErrorClass="form-control is-invalid" required="required"/>
 			  <form:errors cssClass="invalid-feedback" path="password"  />
             </div>
 
             <div class="form-group">
               <form:label path="email">Email</form:label>
-			  <form:input type="email" class="form-control" path="email" cssErrorClass="form-control is-invalid"/>
+			  <form:input type="email" class="form-control" path="email" cssErrorClass="form-control is-invalid" required="required"/>
 			  <form:errors cssClass="invalid-feedback" path="email"  />
             </div>
 
             <div class="form-group">
               <form:label path="ammount">Initial Balance</form:label>
-			  <form:input type="number" class="form-control" path="ammount" cssErrorClass="form-control is-invalid"/>
+			  <form:input type="number" class="form-control" path="ammount" cssErrorClass="form-control is-invalid" required="required"/>
 			  <form:errors cssClass="invalid-feedback" path="ammount"  />
             </div>
 
-            <div class="form-group">
-              <label class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input">
-                <span class="custom-control-indicator"></span>
-                <span class="custom-control-description">I agree to all <a class="text-primary" href="#">terms</a></span>
-              </label>
-            </div>
+			<div class="form-group">
+			<form:label path="currency">Currency</form:label>
+			<form:select class="form-control" path="currency" required="required">
+  				 <form:option value="1" label="US Dollar"/>
+  				 <form:option value="2" label="Euro"/>
+  				 <form:option value="3" label="British Pound"/>
+  				 <form:option value="4" label="Canadian Dollar"/>	
+  				 <form:option value="5" label="Chinese Yuan"/>	
+  				 <form:option value="6" label="Japanese Yen"/>	
+  				 <form:option value="7" label="Swiss Frank"/>	
+  				 <form:option value="8" label="Indian Rupee"/>	
+  				 <form:option value="9" label="Russian Ruble"/>
+  				 <form:option value="10" label="Bulgarian Lev"/>						 
+			</form:select>
+			</div>				
+
+			 <c:if test="${not empty usernameExists}">
+      			  <div class="alert alert-danger" role="alert">
+                  	<h6>This <strong>username</strong> already exists!</h6>
+                </div>
+    		</c:if>
 
             <br>
             <button class="btn btn-bold btn-block btn-primary" type="submit">Register</button>
@@ -67,30 +81,5 @@
       </div>
     </div>
 
-
-
-
-<form:form method="POST" action="register" modelAttribute="newUserForm">
-	<table>
-		<tr>
-			<td><form:errors path="username"  /></td>
-			<td><form:label path="username">Username</form:label></td>
-			<td><form:input path="username" /></td>
-		</tr>
-		<tr>
-			<td><form:errors path="password"  /></td>
-			<td><form:label path="password">Password</form:label></td>
-			<td><form:password path="password" /></td>
-		</tr>
-		<tr>
-			<td><form:errors path="username"  /></td>
-			<td><form:label path="email">Email</form:label></td>
-			<td><form:input path="email" /></td>
-		</tr>
-		<tr>
-			<td><input type="submit" value="Submit" /></td>
-		</tr>
-	</table>
-</form:form>
 
 <%@ include file="common/footer.jsp"%>

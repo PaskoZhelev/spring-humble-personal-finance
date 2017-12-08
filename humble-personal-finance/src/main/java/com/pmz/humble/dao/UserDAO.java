@@ -24,15 +24,16 @@ import com.pmz.humble.utils.StringUtils;
 @Component
 public class UserDAO extends AbstractDAO {
 
-	private static final String USER_COLUMNS = "username, password, email, registration_date, balance, currency_id";
+	private static final String USER_COLUMNS = "id, username, password, email, registration_date, balance, currency_id";
+	private static final String USER_COLUMNS_NO_ID = "username, password, email, registration_date, balance, currency_id";
 	
 	private UserRowMapper userRowMapper = new UserRowMapper();
 	
 	private class UserRowMapper implements RowMapper<User> {
         public User mapRow(ResultSet rs, int rowNum) throws SQLException {
             return new User(rs.getInt(1),
-                    decrypt(rs.getString(2)),
-                    rs.getString(3),
+            		rs.getString(2),
+                    decrypt(rs.getString(3)),
                     rs.getString(4),
                     rs.getDate(5),
                     rs.getDouble(6),
@@ -111,7 +112,7 @@ public class UserDAO extends AbstractDAO {
      * @param user The user to create.
      */
     public void createUser(User user) {
-        String sql = QueryUtils.getInsertStatement("users", USER_COLUMNS);
+        String sql = QueryUtils.getInsertStatement("users", USER_COLUMNS_NO_ID);
         Date today = new Date();       
         update(sql, user.getUsername(), encrypt(user.getPassword()), user.getEmail(), new Timestamp(today.getTime()),
                 user.getBalance(), user.getCurrency().getId());
