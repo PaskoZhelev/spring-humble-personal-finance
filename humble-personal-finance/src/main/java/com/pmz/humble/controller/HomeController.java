@@ -27,10 +27,6 @@ public class HomeController {
 	
 	@GetMapping("/")
 	public String getIndex() {
-		User user = userDAO.getUserByName("pasko");
-
-		LOG.info("{}\n",user.toString());
-
 		return "home";
 	}
 		

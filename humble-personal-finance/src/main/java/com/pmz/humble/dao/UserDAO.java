@@ -33,38 +33,14 @@ public class UserDAO extends AbstractDAO {
         public User mapRow(ResultSet rs, int rowNum) throws SQLException {
             return new User(rs.getInt(1),
             		rs.getString(2),
-                    decrypt(rs.getString(3)),
+                    rs.getString(3),
                     rs.getString(4),
                     rs.getDate(5),
                     rs.getDouble(6),
                     rs.getInt(7));
         }
     }
-	
-	private static String encrypt(String s) {
-        if (s == null) {
-            return null;
-        }
-        try {
-            return "enc:" + StringUtils.utf8HexEncode(s);
-        } catch (Exception e) {
-            return s;
-        }
-    }
-
-    private static String decrypt(String s) {
-        if (s == null) {
-            return null;
-        }
-        if (!s.startsWith("enc:")) {
-            return s;
-        }
-        try {
-            return StringUtils.utf8HexDecode(s.substring(4));
-        } catch (Exception e) {
-            return s;
-        }
-    }
+		
 	
 	/**
 	 * @param username
@@ -114,7 +90,7 @@ public class UserDAO extends AbstractDAO {
     public void createUser(User user) {
         String sql = QueryUtils.getInsertStatement("users", USER_COLUMNS_NO_ID);
         Date today = new Date();       
-        update(sql, user.getUsername(), encrypt(user.getPassword()), user.getEmail(), new Timestamp(today.getTime()),
+        update(sql, user.getUsername(), StringUtils.encrypt(user.getPassword()), user.getEmail(), new Timestamp(today.getTime()),
                 user.getBalance(), user.getCurrency().getId());
     }
     
@@ -125,7 +101,7 @@ public class UserDAO extends AbstractDAO {
      */
     public void updateUser(User user) {
         String sql = QueryUtils.getUpdateUserStatement();
-        getJdbcTemplate().update(sql, encrypt(user.getPassword()), user.getEmail(), user.getBalance(),
+        getJdbcTemplate().update(sql, StringUtils.encrypt(user.getPassword()), user.getEmail(), user.getBalance(),
                 user.getCurrency().getId(), user.getUsername());
     }
     

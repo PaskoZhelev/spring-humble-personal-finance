@@ -14,9 +14,11 @@
      <!-- Styles -->
     <link href="css/core.min.css" rel="stylesheet">
     <link href="css/app.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
     <link href="css/style.min.css" rel="stylesheet">
 
     <!-- Favicons -->
-    <link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+    <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+    <link rel="icon" href="img/favicon.png">
 </head>
-<body>
+

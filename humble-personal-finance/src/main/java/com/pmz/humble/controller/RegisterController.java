@@ -49,14 +49,14 @@ public class RegisterController {
 			model.addAttribute("usernameExists", usernameTaken);
 			return getRegisterView();
 		}
-		return getHomeView();
+		return getLoginView();
 	}
 	
 	private String getRegisterView() {
 		return "register";
 	}
 	
-	private String getHomeView() {
-		return "home";	
+	private String getLoginView() {
+		return "login-page";	
 	}
 }

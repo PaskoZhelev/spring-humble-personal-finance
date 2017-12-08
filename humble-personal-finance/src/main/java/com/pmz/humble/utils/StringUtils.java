@@ -44,4 +44,29 @@ public final class StringUtils {
 	        }
 	        return new String(Hex.decodeHex(s.toCharArray()), ENCODING_UTF8);
 	    }
+	    
+	    public static String encrypt(String s) {
+	        if (s == null) {
+	            return null;
+	        }
+	        try {
+	            return "enc:" + StringUtils.utf8HexEncode(s);
+	        } catch (Exception e) {
+	            return s;
+	        }
+	    }
+
+	    public static String decrypt(String s) {
+	        if (s == null) {
+	            return null;
+	        }
+	        if (!s.startsWith("enc:")) {
+	            return s;
+	        }
+	        try {
+	            return StringUtils.utf8HexDecode(s.substring(4));
+	        } catch (Exception e) {
+	            return s;
+	        }
+	    }
 }
