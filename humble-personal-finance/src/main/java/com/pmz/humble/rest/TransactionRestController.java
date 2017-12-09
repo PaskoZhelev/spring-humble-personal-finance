@@ -28,7 +28,46 @@ public class TransactionRestController {
 	@RequestMapping(value="/{userId}", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ResponseEntity<List<Transaction>> getAllTransactionByUserId(@PathVariable("userId") int userId) {
 		List<Transaction> transactions = transactionService.getAllTransactionsByUserId(userId);		
-		if(transactions == null) {
+		if(transactions.isEmpty()) {
+			return new ResponseEntity<List<Transaction>>(HttpStatus.NOT_FOUND);
+		}		
+		return new ResponseEntity<List<Transaction>>(transactions, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value="/{userId}/{categoryId}", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public ResponseEntity<List<Transaction>> 
+			getAllTransactionsByCategory(@PathVariable("userId") int userId,
+					@PathVariable("categoryId") int categoryId) {
+		List<Transaction> transactions = transactionService.getAllTransactionsOfUserByCategory(userId, categoryId);
+		
+		if(transactions.isEmpty()) {
+			return new ResponseEntity<List<Transaction>>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<List<Transaction>>(transactions, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value="/yesterday/{userId}", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public ResponseEntity<List<Transaction>> getAllTransactionsOfUserForYesterday(@PathVariable("userId") int userId) {
+		List<Transaction> transactions = transactionService.getAllTransactionsOfUserForYesterday(userId);		
+		if(transactions.isEmpty()) {
+			return new ResponseEntity<List<Transaction>>(HttpStatus.NOT_FOUND);
+		}		
+		return new ResponseEntity<List<Transaction>>(transactions, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value="/last/week/{userId}", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public ResponseEntity<List<Transaction>> getAllTransactionsOfUserForLastWeek(@PathVariable("userId") int userId) {
+		List<Transaction> transactions = transactionService.getAllTransactionsOfUserForLastWeek(userId);		
+		if(transactions.isEmpty()) {
+			return new ResponseEntity<List<Transaction>>(HttpStatus.NOT_FOUND);
+		}		
+		return new ResponseEntity<List<Transaction>>(transactions, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value="/last/month/{userId}", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public ResponseEntity<List<Transaction>> getAllTransactionsOfUserForLastMonth(@PathVariable("userId") int userId) {
+		List<Transaction> transactions = transactionService.getAllTransactionsOfUserForLastMonth(userId);		
+		if(transactions.isEmpty()) {
 			return new ResponseEntity<List<Transaction>>(HttpStatus.NOT_FOUND);
 		}		
 		return new ResponseEntity<List<Transaction>>(transactions, HttpStatus.OK);

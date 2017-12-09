@@ -51,7 +51,7 @@ public final class QueryUtils {
 	}
 	
 	public static String getAllTransactionsOfUserForYesterday(String cols) {
-		return "SELECT " + cols + " FROM transactions WHERE date = CURDATE() - INTERVAL 1 DAY AND user_id=?";
+		return "SELECT " + cols + " FROM transactions WHERE date(date) = CURDATE() - INTERVAL 1 DAY AND user_id=?";
 	}
 	
 	public static String getAllTransactionsOfUserForLastWeek(String cols) {
