@@ -62,6 +62,25 @@ public class UserDAO extends AbstractDAO {
     }
 	
 	/**
+	 * @param username
+	 * @return User based on user id
+	 */
+	public User getUserById(int id) {
+		
+        String sql = QueryUtils.getSelectStatementWithArgsAndWhere("users", USER_COLUMNS) + "id=?";
+        
+        List<User> users = query(sql, userRowMapper, id);
+        User user = null;
+        if(users.size() == 1) {
+            user = users.iterator().next();
+        } else if (users.size() > 1) {
+            throw new RuntimeException("Too many matching users");
+        }
+
+        return user;
+    }
+	
+	/**
      *
      * @param email The email address.
      * @return The user, or <code>null</code> if not found.

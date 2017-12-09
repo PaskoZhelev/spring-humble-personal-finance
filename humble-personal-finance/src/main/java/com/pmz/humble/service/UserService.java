@@ -21,6 +21,10 @@ public class UserService {
 	public User getUserByName(String username) {
 		return userDAO.getUserByName(username);
 	}
+	
+	public User getUserById(int id) {
+		return userDAO.getUserById(id);
+	}
 
 	public User getUserByEmail(String email) {
 		return userDAO.getUserByEmail(email);

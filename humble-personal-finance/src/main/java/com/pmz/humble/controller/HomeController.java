@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import com.pmz.humble.dao.TransactionDAO;
 import com.pmz.humble.dao.UserDAO;
-import com.pmz.humble.model.User;
 
 /**
  * @author pasko
@@ -27,6 +26,7 @@ public class HomeController {
 	
 	@GetMapping("/")
 	public String getIndex() {
+
 		return "home";
 	}
 		

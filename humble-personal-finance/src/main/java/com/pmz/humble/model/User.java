@@ -4,6 +4,7 @@ package com.pmz.humble.model;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.pmz.humble.factories.CurrencyFactory;
 import com.pmz.humble.interfaces.Currency;
 
@@ -11,6 +12,8 @@ public class User {
 	
 	private int id;
 	private String username;
+	
+	@JsonIgnore
 	private String password;
 	private String email;
 	private Date registrationDate;
