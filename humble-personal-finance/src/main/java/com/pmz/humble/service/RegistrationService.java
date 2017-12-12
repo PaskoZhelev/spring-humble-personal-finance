@@ -19,14 +19,14 @@ public class RegistrationService {
 	private static final Logger LOG = LoggerFactory.getLogger(RegistrationService.class);
 	
 	@Autowired
-	private UserDAO userDAO;
+	private UserService userService;
 	
 	public User registerUser(NewUserForm newUserForm) {
-		if(userDAO.getUserByName(newUserForm.getUsername()) == null) {
+		if(userService.getUserByName(newUserForm.getUsername()) == null) {
 			User user = new User(newUserForm.getUsername(),
 					newUserForm.getPassword(), newUserForm.getEmail(),
 					newUserForm.getAmmount(), newUserForm.getCurrency());
-			userDAO.createUser(user);
+			userService.createUser(user);
 			LOG.info("Successfully created user: {}", user.toString());
 			
 			return user;

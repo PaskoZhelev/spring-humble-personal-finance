@@ -24,6 +24,12 @@
           <p><small>All fields are required.</small></p>
           <br>
 		<form:form class="form-type-material" method="POST" action="register" modelAttribute="newUserForm">
+			<c:if test="${not empty usernameExists}">
+      			  <div class="alert alert-danger" role="alert">
+                  	<h6>This <strong>username</strong> already exists!</h6>
+                </div>
+    		</c:if>
+		
             <div class="form-group">             
 			  <form:label path="username">Username</form:label>
 			  <form:input class="form-control" path="username" cssErrorClass="form-control is-invalid"  required="required"/>
@@ -62,13 +68,7 @@
   				 <form:option value="9" label="Russian Ruble"/>
   				 <form:option value="10" label="Bulgarian Lev"/>						 
 			</form:select>
-			</div>				
-
-			 <c:if test="${not empty usernameExists}">
-      			  <div class="alert alert-danger" role="alert">
-                  	<h6>This <strong>username</strong> already exists!</h6>
-                </div>
-    		</c:if>
+			</div>							 
 
             <br>
             <button class="btn btn-bold btn-block btn-primary" type="submit">Register</button>

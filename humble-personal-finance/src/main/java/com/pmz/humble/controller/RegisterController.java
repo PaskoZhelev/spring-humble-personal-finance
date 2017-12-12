@@ -57,6 +57,6 @@ public class RegisterController {
 	}
 	
 	private String getLoginView() {
-		return "login-page";	
+		return "redirect:login-page";	
 	}
 }
