@@ -17,6 +17,9 @@ public class UserService {
 
 	@Autowired
 	private UserDAO userDAO;
+	
+	@Autowired
+	private RoleService roleService;
 
 	public User getUserByName(String username) {
 		return userDAO.getUserByName(username);
@@ -36,6 +39,7 @@ public class UserService {
 
 	public void createUser(User user) {
 		userDAO.createUser(user);
+		roleService.createRole(user.getUsername());
 	}
 	
 	public void deleteUser(String username) {

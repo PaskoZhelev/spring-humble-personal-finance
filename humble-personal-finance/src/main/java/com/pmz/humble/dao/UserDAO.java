@@ -9,10 +9,16 @@ import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import com.pmz.humble.model.User;
+import com.pmz.humble.service.RegistrationService;
 import com.pmz.humble.utils.QueryUtils;
 import com.pmz.humble.utils.StringUtils;
 
@@ -24,10 +30,16 @@ import com.pmz.humble.utils.StringUtils;
 @Component
 public class UserDAO extends AbstractDAO {
 
+	private static final Logger LOG = LoggerFactory.getLogger(UserDAO.class);
+	
 	private static final String USER_COLUMNS = "id, username, password, email, registration_date, balance, currency_id";
 	private static final String USER_COLUMNS_NO_ID = "username, password, email, registration_date, balance, currency_id";
 	
 	private UserRowMapper userRowMapper = new UserRowMapper();
+	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+	
 	
 	private class UserRowMapper implements RowMapper<User> {
         public User mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -109,8 +121,11 @@ public class UserDAO extends AbstractDAO {
     public void createUser(User user) {
         String sql = QueryUtils.getInsertStatement("users", USER_COLUMNS_NO_ID);
         Date today = new Date();       
-        update(sql, user.getUsername(), StringUtils.encrypt(user.getPassword()), user.getEmail(), new Timestamp(today.getTime()),
+//        update(sql, user.getUsername(), StringUtils.encrypt(user.getPassword()), user.getEmail(), new Timestamp(today.getTime()),
+//                user.getBalance(), user.getCurrency().getId());
+        update(sql, user.getUsername(), passwordEncoder.encode(user.getPassword()), user.getEmail(), new Timestamp(today.getTime()),
                 user.getBalance(), user.getCurrency().getId());
+        LOG.info("New User Created: {}", user.toString());
     }
     
     /**

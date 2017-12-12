@@ -24,12 +24,12 @@
           <br>
 
           <form:form class="form-type-material" method="POST" action="login-page" modelAttribute="loginUserForm">
-          <c:if test="${not empty wrongUsernamePassword}">
+          <c:if test="${param.error ne null}">
       			  <div class="alert alert-danger" role="alert">
                   	<h6>Username or password is incorrect</h6>
                 </div>
     	  </c:if>
-    	  
+
             <div class="form-group">             
 			  <form:label path="username">Username</form:label>
 			  <form:input class="form-control" path="username" cssErrorClass="form-control is-invalid"  required="required"/>

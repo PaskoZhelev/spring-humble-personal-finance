@@ -11,7 +11,7 @@
           <span class="topbar-btn topbar-menu-toggler"><i>&#9776;</i></span>
 
           <div class="topbar-brand">
-            <a href="/"><img src="img/humble-small-white2.png" alt="..."></a>
+            <a href="home"><img src="img/humble-small-white2.png" alt="..."></a>
           </div>
 
           <div class="topbar-divider d-none d-md-block"></div>

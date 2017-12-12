@@ -4,7 +4,6 @@ import javax.validation.Valid;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,7 +13,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.pmz.humble.model.forms.LoginUserForm;
-import com.pmz.humble.service.LoginService;
 
 /**
  * @author pasko
@@ -27,9 +25,7 @@ public class LoginController {
 	
 	@Value("${humble.registration.wrongUsernamePassword}")
 	private String wrongUsernamePassword;
-	
-	@Autowired
-	private LoginService loginService;
+
 	
 	@GetMapping("/login-page")
 	public String loginForm(Model model) {
@@ -46,17 +42,14 @@ public class LoginController {
             return getLoginView();
         }
 		
-		if(loginService.loginUser(loginUserForm) == null) {
-			LOG.info("Login Controller: The login service returned null (username or password is incorrect)");
-			model.addAttribute("wrongUsernamePassword", wrongUsernamePassword);
-			return getLoginView();
-		}
 		return getHomeView();
 	}
+	
 	
 	private String getLoginView() {
 		return "login-page";
 	}
+	
 	
 	private String getHomeView() {
 		return "home";	
