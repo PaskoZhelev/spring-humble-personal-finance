@@ -48,20 +48,34 @@ public class TransactionDAO extends AbstractDAO {
 		return transactions;
 	}
 	
+	public List<Transaction> getAllIncomeTransactionsOfUser(int userId){
+		final int incomeCategoryId = 2;
+		String sql = QueryUtils.getAllIncomeTransactionsOfUser(TRANSACTION_COLUMNS_WITH_ID);
+		List<Transaction> transactions = query(sql, transactionRowMapper, userId, incomeCategoryId);
+		return transactions;
+	}
+	
+	public List<Transaction> getAllExpenseTransactionsOfUser(int userId){
+		final int incomeCategoryId = 2;
+		String sql = QueryUtils.getAllExpenseTransactionsOfUser(TRANSACTION_COLUMNS_WITH_ID);
+		List<Transaction> transactions = query(sql, transactionRowMapper, userId, incomeCategoryId);
+		return transactions;
+	}
+	
 	public List<Transaction> getAllTransactionsOfUserForYesterday(int userId){
 		String sql = QueryUtils.getAllTransactionsOfUserForYesterday(TRANSACTION_COLUMNS_WITH_ID);
 		List<Transaction> transactions = query(sql, transactionRowMapper, userId);
 		return transactions;
 	}
 	
-	public List<Transaction> getAllTransactionsOfUserForLastWeek(int userId){
-		String sql = QueryUtils.getAllTransactionsOfUserForLastWeek(TRANSACTION_COLUMNS_WITH_ID);
+	public List<Transaction> getAllTransactionsOfUserForThisWeek(int userId){
+		String sql = QueryUtils.getAllTransactionsOfUserForThisWeek(TRANSACTION_COLUMNS_WITH_ID);
 		List<Transaction> transactions = query(sql, transactionRowMapper, userId);
 		return transactions;
 	}
 	
-	public List<Transaction> getAllTransactionsOfUserForLastMonth(int userId){
-		String sql = QueryUtils.getAllTransactionsOfUserForLastMonth(TRANSACTION_COLUMNS_WITH_ID);
+	public List<Transaction> getAllTransactionsOfUserForThisMonth(int userId){
+		String sql = QueryUtils.getAllTransactionsOfUserForThisMonth(TRANSACTION_COLUMNS_WITH_ID);
 		List<Transaction> transactions = query(sql, transactionRowMapper, userId);
 		return transactions;
 	}

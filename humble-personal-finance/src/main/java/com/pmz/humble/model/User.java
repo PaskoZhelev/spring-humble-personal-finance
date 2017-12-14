@@ -1,6 +1,7 @@
 package com.pmz.humble.model;
 
 
+import java.text.DecimalFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -10,6 +11,7 @@ import com.pmz.humble.interfaces.Currency;
 
 public class User {
 	
+
 	private int id;
 	private String username;
 	
@@ -20,6 +22,7 @@ public class User {
 	private List<Transaction> transactions;
 	private double balance;
 	private Currency currency;
+		
 
 	public User(String username, String password, String email, Date registrationDate, 
 			double ammount, int currencyId) {
@@ -114,7 +117,7 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", username=" + username + ", password=" + password + ", email=" + email
+		return "User [id=" + id + ", username=" + username + ", email=" + email
 				+ ", registrationDate=" + registrationDate + ", transactions=" + transactions + ", balance=" + balance
 				+ ", currency=" + currency + "]";
 	}

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.pmz.humble.dao.TransactionDAO;
 import com.pmz.humble.model.Transaction;
+import com.pmz.humble.utils.QueryUtils;
 
 /**
  * @author pasko
@@ -26,16 +27,24 @@ public class TransactionService {
 		return transactionDAO.getAllTransactionsOfUserByCategory(userId, categoryId);
 	}
 	
+	public List<Transaction> getAllIncomeTransactionsOfUser(int userId){
+		return transactionDAO.getAllIncomeTransactionsOfUser(userId);
+	}
+	
+	public List<Transaction> getAllExpenseTransactionsOfUser(int userId){
+		return transactionDAO.getAllExpenseTransactionsOfUser(userId);
+	}
+	
 	public List<Transaction> getAllTransactionsOfUserForYesterday(int userId){
 		return transactionDAO.getAllTransactionsOfUserForYesterday(userId);
 	}
 	
-	public List<Transaction> getAllTransactionsOfUserForLastWeek(int userId){
-		return transactionDAO.getAllTransactionsOfUserForLastWeek(userId);
+	public List<Transaction> getAllTransactionsOfUserForThisWeek(int userId){
+		return transactionDAO.getAllTransactionsOfUserForThisWeek(userId);
 	}
 	
-	public List<Transaction> getAllTransactionsOfUserForLastMonth(int userId){
-		return transactionDAO.getAllTransactionsOfUserForLastMonth(userId);
+	public List<Transaction> getAllTransactionsOfUserForThisMonth(int userId){
+		return transactionDAO.getAllTransactionsOfUserForThisMonth(userId);
 	}
 	
 	public void createTransaction(Transaction transaction) {

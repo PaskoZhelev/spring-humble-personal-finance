@@ -95,7 +95,7 @@
                 <div class="card-body">
 
                   <div class="text-center my-2">
-                    <span id="balanceForFormat"><span id="currency">$ </span><span id="balance">0.00</span></span>
+                    <span id="balanceForFormat"><span id="currency">$ </span><span id="balance">${user.balance}</span></span>
                   </div>
                 </div>
 

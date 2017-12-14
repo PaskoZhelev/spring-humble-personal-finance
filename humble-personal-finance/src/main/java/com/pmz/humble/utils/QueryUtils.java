@@ -50,16 +50,27 @@ public final class QueryUtils {
 		return "SELECT " + cols + " FROM transactions WHERE user_id=? AND category_id=?";
 	}
 	
+	public static String getAllIncomeTransactionsOfUser(String cols) {
+		return "SELECT " + cols + " FROM transactions WHERE MONTH(`date`) = MONTH(CURRENT_DATE())"
+				+ " AND YEAR(`date`) = YEAR(CURRENT_DATE()) user_id=? AND category_id = ?";
+	}
+	
+	public static String getAllExpenseTransactionsOfUser(String cols) {
+		return "SELECT " + cols + " FROM transactions WHERE MONTH(`date`) = MONTH(CURRENT_DATE())"
+				+ " AND YEAR(`date`) = YEAR(CURRENT_DATE()) user_id=? AND category_id <> ?";
+	}
+	
 	public static String getAllTransactionsOfUserForYesterday(String cols) {
 		return "SELECT " + cols + " FROM transactions WHERE date(date) = CURDATE() - INTERVAL 1 DAY AND user_id=?";
 	}
 	
-	public static String getAllTransactionsOfUserForLastWeek(String cols) {
-		return "SELECT " + cols + " FROM transactions WHERE date BETWEEN date_sub(NOW(),INTERVAL 1 WEEK) AND NOW() AND user_id=?";
+	public static String getAllTransactionsOfUserForThisWeek(String cols) {
+		return "SELECT " + cols + " FROM transactions WHERE YEARWEEK(`date`, 1) = YEARWEEK(CURDATE(), 1) AND user_id=?";
 	}
 	
-	public static String getAllTransactionsOfUserForLastMonth(String cols) {
-		return "SELECT " + cols + " FROM transactions WHERE date BETWEEN date_sub(NOW(),INTERVAL 1 MONTH) AND NOW() AND user_id=?";
+	public static String getAllTransactionsOfUserForThisMonth(String cols) {
+		return "SELECT " + cols + " FROM transactions WHERE MONTH(`date`) = MONTH(CURRENT_DATE()) "
+				+ "AND YEAR(`date`) = YEAR(CURRENT_DATE()) AND user_id=?";
 	}
 	
 	public static String getUpdateTransactionStatement() {
