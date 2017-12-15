@@ -18,13 +18,13 @@ public class CalculationHandler {
 	@Autowired
 	private TransactionService transactionService;
 	
-	public double calculateMonthlyIncomeOfUser(int userId) {
-		List<Transaction> transactions = transactionService.getAllIncomeTransactionsOfUser(userId);		
+	public double calculateMonthlyIncomeOfUser(int userId, int month) {
+		List<Transaction> transactions = transactionService.getAllIncomeTransactionsOfUser(userId, month);		
 		return calculateSum(transactions);
 	}
 	
-	public double calculateMonthlyExpenseOfUser(int userId) {
-		List<Transaction> transactions = transactionService.getAllExpenseTransactionsOfUser(userId);		
+	public double calculateMonthlyExpenseOfUser(int userId, int month) {
+		List<Transaction> transactions = transactionService.getAllExpenseTransactionsOfUser(userId, month);		
 		return calculateSum(transactions);
 	}
 

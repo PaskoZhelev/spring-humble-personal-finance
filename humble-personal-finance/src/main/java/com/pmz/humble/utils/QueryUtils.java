@@ -46,18 +46,22 @@ public final class QueryUtils {
 		return "SELECT " + cols + " FROM transactions WHERE user_id=?";
 	}
 	
+	public static String getLastFiveTransactionsById(String cols) {
+		return "SELECT " + cols + " FROM transactions WHERE user_id=? LIMIT 5";
+	}
+	
 	public static String getAllTransactionsOfUserByCategory(String cols) {
 		return "SELECT " + cols + " FROM transactions WHERE user_id=? AND category_id=?";
 	}
 	
-	public static String getAllIncomeTransactionsOfUser(String cols) {
-		return "SELECT " + cols + " FROM transactions WHERE MONTH(`date`) = MONTH(CURRENT_DATE())"
-				+ " AND YEAR(`date`) = YEAR(CURRENT_DATE()) user_id=? AND category_id = ?";
+	public static String getAllIncomeTransactionsOfUser(String cols, int month) {
+		return "SELECT " + cols + " FROM transactions WHERE MONTH(`date`) = MONTH('2017-" + month + "-01')"
+				+ " AND YEAR(`date`) = YEAR(CURRENT_DATE()) AND user_id=? AND category_id = ?";
 	}
 	
-	public static String getAllExpenseTransactionsOfUser(String cols) {
-		return "SELECT " + cols + " FROM transactions WHERE MONTH(`date`) = MONTH(CURRENT_DATE())"
-				+ " AND YEAR(`date`) = YEAR(CURRENT_DATE()) user_id=? AND category_id <> ?";
+	public static String getAllExpenseTransactionsOfUser(String cols, int month) {
+		return "SELECT " + cols + " FROM transactions WHERE MONTH(`date`) = MONTH('2017-" + month + "-01')"
+				+ " AND YEAR(`date`) = YEAR(CURRENT_DATE()) AND user_id=? AND category_id <> ?";
 	}
 	
 	public static String getAllTransactionsOfUserForYesterday(String cols) {
@@ -70,6 +74,11 @@ public final class QueryUtils {
 	
 	public static String getAllTransactionsOfUserForThisMonth(String cols) {
 		return "SELECT " + cols + " FROM transactions WHERE MONTH(`date`) = MONTH(CURRENT_DATE()) "
+				+ "AND YEAR(`date`) = YEAR(CURRENT_DATE()) AND user_id=?";
+	}
+	
+	public static String getAllTransactionsOfUserForParticularMonth(String cols, int month) {
+		return "SELECT " + cols + " FROM transactions WHERE MONTH(`date`) = MONTH('2017-" + month + "-01') "
 				+ "AND YEAR(`date`) = YEAR(CURRENT_DATE()) AND user_id=?";
 	}
 	

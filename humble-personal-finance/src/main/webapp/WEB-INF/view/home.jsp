@@ -69,8 +69,8 @@
 
 
             <li>
-              <span class="topbar-btn has-new" data-toggle="quickview" data-target="#qv-notifications"><i class="ti-bell"></i></span>
-            </li>
+				<span class="fs-14 fw-500 center-vh text-white" id="username">${user.username}</span>		
+			</li>
 
           </ul>
 
@@ -107,12 +107,12 @@
 			  
 
 			<div class="card shadow-1">
-                <h4 class="card-title text-dark flexbox"><strong>Monthly Balance</strong><span class="fs-12 fw-600" style="color:#119b5d;padding-top:4px;" id="month">November<span>, </span><span id="year">2017</span></span></h4>
+                <h4 class="card-title text-dark flexbox"><strong>Monthly Balance</strong><span class="fs-12 fw-600" style="color:#119b5d;padding-top:4px;" id="month">${currentMonth}<span>, </span><span id="year">${currentYear}</span></span></h4>
                 <div class="card-body">
                   <div class="text-center my-2">
-                    <span class="fs-16 fw-400 text-muted float-left">Income:</span><span class="fs-16 fw-400 text-success float-right" ><span id="currency">$ </span><span id="balance">1356.46</span></span>
+                    <span class="fs-16 fw-400 text-muted float-left">Income:</span><span class="fs-16 fw-600 text-success float-right" ><span id="currency">$ </span><span id="balance">${monthlyIncome}</span></span>
 					<br />
-					<span class="fs-16 fw-400 text-muted float-left">Expenses:</span><span class="fs-16 fw-400 text-danger float-right" id="balance"><span id="currency">$ </span>356.46</span>
+					<span class="fs-16 fw-400 text-muted float-left">Expenses:</span><span class="fs-16 fw-600 text-danger float-right" id="balance"><span id="currency">$ </span>${monthlyExpense}</span>
                   </div>
                 </div>				
             </div>	

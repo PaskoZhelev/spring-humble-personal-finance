@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import com.pmz.humble.handler.CalculationHandler;
 import com.pmz.humble.model.User;
+import com.pmz.humble.service.TransactionService;
 import com.pmz.humble.service.UserService;
+import com.pmz.humble.utils.DateUtils;
 
 /**
  * @author pasko
@@ -22,9 +24,12 @@ public class HomeController {
 	private static final Logger LOG = LoggerFactory.getLogger(HomeController.class);
 	
 	@Autowired
-	private UserService userService;	
+	private UserService userService;
+	@Autowired
+	private TransactionService transactionService;
 	@Autowired
 	private CalculationHandler calculationHandler;
+	
 	
 	@GetMapping(value= {"/","/home"})
 	public String getIndex(Model model) {
@@ -41,9 +46,20 @@ public class HomeController {
 		User user = userService.getUserByName(username);
 		return user;
 	}
-	//TODO may create a UserTransactions model in which to use calculationHandler for calculating all transaction of the user
+	
 	private void addNecessaryModelAttributes(final User user, final Model model) {
+		int userId = user.getId();
+		int currentMonthDigit = DateUtils.getCurrentMonthDigit();
+		double monthlyIncome = calculationHandler
+				.calculateMonthlyIncomeOfUser(userId, currentMonthDigit);
+		double monthlyExpense = calculationHandler
+				.calculateMonthlyExpenseOfUser(userId, currentMonthDigit);
+		
 		model.addAttribute("user", user);
+		model.addAttribute("currentMonth", DateUtils.getMonthString(currentMonthDigit));
+		model.addAttribute("currentYear", DateUtils.getCurrentYear());
+		model.addAttribute("monthlyIncome", monthlyIncome);
+		model.addAttribute("monthlyExpense", monthlyExpense);
 		
 		LOG.info("Logged in user: {}", user.toString());
 	}

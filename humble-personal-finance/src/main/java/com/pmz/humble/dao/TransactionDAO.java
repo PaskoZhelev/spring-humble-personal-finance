@@ -42,22 +42,28 @@ public class TransactionDAO extends AbstractDAO {
 		return transactions;
 	}
 	
+	public List<Transaction> getLastFiveTransactionsByUserId(int userId) {
+		String sql = QueryUtils.getLastFiveTransactionsById(TRANSACTION_COLUMNS_WITH_ID);
+		List<Transaction> transactions = query(sql, transactionRowMapper, userId);
+		return transactions;
+	}
+	
 	public List<Transaction> getAllTransactionsOfUserByCategory(int userId, int categoryId){
 		String sql = QueryUtils.getAllTransactionsOfUserByCategory(TRANSACTION_COLUMNS_WITH_ID);
 		List<Transaction> transactions = query(sql, transactionRowMapper, userId, categoryId);
 		return transactions;
 	}
 	
-	public List<Transaction> getAllIncomeTransactionsOfUser(int userId){
+	public List<Transaction> getAllIncomeTransactionsOfUser(int userId, int month){
 		final int incomeCategoryId = 2;
-		String sql = QueryUtils.getAllIncomeTransactionsOfUser(TRANSACTION_COLUMNS_WITH_ID);
+		String sql = QueryUtils.getAllIncomeTransactionsOfUser(TRANSACTION_COLUMNS_WITH_ID, month);
 		List<Transaction> transactions = query(sql, transactionRowMapper, userId, incomeCategoryId);
 		return transactions;
 	}
 	
-	public List<Transaction> getAllExpenseTransactionsOfUser(int userId){
+	public List<Transaction> getAllExpenseTransactionsOfUser(int userId, int month){
 		final int incomeCategoryId = 2;
-		String sql = QueryUtils.getAllExpenseTransactionsOfUser(TRANSACTION_COLUMNS_WITH_ID);
+		String sql = QueryUtils.getAllExpenseTransactionsOfUser(TRANSACTION_COLUMNS_WITH_ID, month);
 		List<Transaction> transactions = query(sql, transactionRowMapper, userId, incomeCategoryId);
 		return transactions;
 	}
@@ -76,6 +82,12 @@ public class TransactionDAO extends AbstractDAO {
 	
 	public List<Transaction> getAllTransactionsOfUserForThisMonth(int userId){
 		String sql = QueryUtils.getAllTransactionsOfUserForThisMonth(TRANSACTION_COLUMNS_WITH_ID);
+		List<Transaction> transactions = query(sql, transactionRowMapper, userId);
+		return transactions;
+	}
+	
+	public List<Transaction> getAllTransactionsOfUserForParticularMonth(int userId, int month){
+		String sql = QueryUtils.getAllTransactionsOfUserForParticularMonth(TRANSACTION_COLUMNS_WITH_ID, month);
 		List<Transaction> transactions = query(sql, transactionRowMapper, userId);
 		return transactions;
 	}

@@ -23,16 +23,20 @@ public class TransactionService {
 		return transactionDAO.getAllTransactionsByUserId(userId);
 	}
 	
+	public List<Transaction> getLastFiveTransactionsByUserId(int userId) {
+		return transactionDAO.getLastFiveTransactionsByUserId(userId);
+	}
+	
 	public List<Transaction> getAllTransactionsOfUserByCategory(int userId, int categoryId){
 		return transactionDAO.getAllTransactionsOfUserByCategory(userId, categoryId);
 	}
 	
-	public List<Transaction> getAllIncomeTransactionsOfUser(int userId){
-		return transactionDAO.getAllIncomeTransactionsOfUser(userId);
+	public List<Transaction> getAllIncomeTransactionsOfUser(int userId, int month){
+		return transactionDAO.getAllIncomeTransactionsOfUser(userId, month);
 	}
 	
-	public List<Transaction> getAllExpenseTransactionsOfUser(int userId){
-		return transactionDAO.getAllExpenseTransactionsOfUser(userId);
+	public List<Transaction> getAllExpenseTransactionsOfUser(int userId, int month){
+		return transactionDAO.getAllExpenseTransactionsOfUser(userId, month);
 	}
 	
 	public List<Transaction> getAllTransactionsOfUserForYesterday(int userId){
@@ -45,6 +49,10 @@ public class TransactionService {
 	
 	public List<Transaction> getAllTransactionsOfUserForThisMonth(int userId){
 		return transactionDAO.getAllTransactionsOfUserForThisMonth(userId);
+	}
+	
+	public List<Transaction> getAllTransactionsOfUserForParticularMonth(int userId, int month){
+		return transactionDAO.getAllTransactionsOfUserForParticularMonth(userId, month);
 	}
 	
 	public void createTransaction(Transaction transaction) {
