@@ -66,14 +66,10 @@
                 <a class="dropdown-item" href="#"><i class="ti-power-off"></i> Logout</a>
               </div>
             </li>
-
-
-            <li>
-				<span class="fs-14 fw-500 center-vh text-white" id="username">${user.username}</span>		
-			</li>
-
+     
           </ul>
 
+			<span class="fs-14 fw-500 center-vh text-white" id="username">${user.username}</span>
         </div>
       </div>
     </header>
@@ -95,7 +91,7 @@
                 <div class="card-body">
 
                   <div class="text-center my-2">
-                    <span id="balanceForFormat"><span id="currency">$ </span><span id="balance">${user.balance}</span></span>
+                    <span id="balanceForFormat"><span id="currency">${currencySign} </span><span id="balance">${user.balance}</span></span>
                   </div>
                 </div>
 
@@ -110,9 +106,9 @@
                 <h4 class="card-title text-dark flexbox"><strong>Monthly Balance</strong><span class="fs-12 fw-600" style="color:#119b5d;padding-top:4px;" id="month">${currentMonth}<span>, </span><span id="year">${currentYear}</span></span></h4>
                 <div class="card-body">
                   <div class="text-center my-2">
-                    <span class="fs-16 fw-400 text-muted float-left">Income:</span><span class="fs-16 fw-600 text-success float-right" ><span id="currency">$ </span><span id="balance">${monthlyIncome}</span></span>
+                    <span class="fs-16 fw-400 text-muted float-left">Income:</span><span class="fs-16 fw-600 text-success float-right" ><span id="currency">${currencySign} </span><span id="balance">${monthlyIncome}</span></span>
 					<br />
-					<span class="fs-16 fw-400 text-muted float-left">Expenses:</span><span class="fs-16 fw-600 text-danger float-right" id="balance"><span id="currency">$ </span>${monthlyExpense}</span>
+					<span class="fs-16 fw-400 text-muted float-left">Expenses:</span><span class="fs-16 fw-600 text-danger float-right" id="balance"><span id="currency">${currencySign} </span>${monthlyExpense}</span>
                   </div>
                 </div>				
             </div>	

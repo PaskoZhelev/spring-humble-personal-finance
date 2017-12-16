@@ -56,6 +56,7 @@ public class HomeController {
 				.calculateMonthlyExpenseOfUser(userId, currentMonthDigit);
 		
 		model.addAttribute("user", user);
+		model.addAttribute("currencySign", user.getCurrency().getSign());
 		model.addAttribute("currentMonth", DateUtils.getMonthString(currentMonthDigit));
 		model.addAttribute("currentYear", DateUtils.getCurrentYear());
 		model.addAttribute("monthlyIncome", monthlyIncome);
