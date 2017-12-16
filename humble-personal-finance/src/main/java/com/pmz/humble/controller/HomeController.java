@@ -54,11 +54,15 @@ public class HomeController {
 				.calculateMonthlyIncomeOfUser(userId, currentMonthDigit);
 		double monthlyExpense = calculationHandler
 				.calculateMonthlyExpenseOfUser(userId, currentMonthDigit);
+		int[] monthsArray = DateUtils.getArrayWithTheLastMonthsDigits();
 		
 		model.addAttribute("user", user);
 		model.addAttribute("currencySign", user.getCurrency().getSign());
 		model.addAttribute("currentMonth", DateUtils.getMonthString(currentMonthDigit));
 		model.addAttribute("currentYear", DateUtils.getCurrentYear());
+		model.addAttribute("lastMonths", DateUtils.getListLastMonths(monthsArray));
+		model.addAttribute("lastMonthsIncomes", calculationHandler.constructIncomeListForLastFiveMonths(userId, monthsArray));
+		model.addAttribute("lastMonthsExpenses", calculationHandler.constructExpenseListForLastFiveMonths(userId, monthsArray));
 		model.addAttribute("monthlyIncome", monthlyIncome);
 		model.addAttribute("monthlyExpense", monthlyExpense);
 		

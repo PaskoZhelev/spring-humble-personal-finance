@@ -1,5 +1,6 @@
 package com.pmz.humble.handler;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,24 @@ public class CalculationHandler {
 		return calculateSum(transactions);
 	}
 
+	public List<Double> constructIncomeListForLastFiveMonths( int userId, int[] monthsArr){
+		List<Double> incomeList = new ArrayList<>();
+		for(int i = 0; i < monthsArr.length; i++) {
+			incomeList.add(calculateMonthlyIncomeOfUser(userId, monthsArr[i]));
+		}
+		
+		return incomeList;
+	}
+	
+	public List<Double> constructExpenseListForLastFiveMonths( int userId, int[] monthsArr){
+		List<Double> expenseList = new ArrayList<>();
+		for(int i = 0; i < monthsArr.length; i++) {
+			expenseList.add(calculateMonthlyExpenseOfUser(userId, monthsArr[i]));
+		}
+		
+		return expenseList;
+	}
+	
 	/**
 	 * @param transactions
 	 * @return

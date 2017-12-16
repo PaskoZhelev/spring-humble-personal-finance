@@ -511,7 +511,11 @@
           // Data
           //
           data: {
-          labels: ["January", "February", "March", "April", "May"],
+          labels: [
+        	    <c:forEach var="month" items="${lastMonths}" varStatus="loop">
+             		 "${month}" <c:if test="${!loop.last}">,</c:if> 
+          		</c:forEach>
+        	 ],
             datasets: [
               {
                 label: "Income",
@@ -519,7 +523,11 @@
                 borderColor: "rgba(0,0,0,0)",
                 hoverBackgroundColor: "#11a060",
                 hoverBorderColor: "rgba(0,0,0,0)",
-                data: [20, 59, 80, 58, 20]
+                data: [
+                	<c:forEach var="month" items="${lastMonthsIncomes}" varStatus="loop">
+            		 "${month}" <c:if test="${!loop.last}">,</c:if> 
+         			</c:forEach>
+                	]
               },
               {
                 label: "Expenses",
@@ -527,7 +535,11 @@
                 borderColor: "rgba(0,0,0,0)",
                 hoverBackgroundColor: "#c7c8c9",
                 hoverBorderColor: "rgba(0,0,0,0)",
-                data: [28, 48, 40, 19, 86]
+                data: [
+                	<c:forEach var="month" items="${lastMonthsExpenses}" varStatus="loop">
+           		 		"${month}" <c:if test="${!loop.last}">,</c:if> 
+        			</c:forEach>
+                	]
               }
             ]
           },
