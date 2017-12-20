@@ -1,2 +1,2 @@
-# spring-humble-personal-finance
-Humble 2 - Personal Finance based on Spring 
+# Spring-humble-personal-finance
+Humble 2 - Personal Finance developed with Spring Boot
